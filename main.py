@@ -6,6 +6,8 @@ import sys
 #print (Mercedes.color)
 
 character_list = ["Marilton", "Paulo", "Torchelsen", "Pilla", "Leomar", "Luciana", "Simone", "Rafa", "Tati", "Guilherme", "Porto", "Lisane", "Felipe", "Substituto", "Cesar Menotti", "Du Bois", "Renata", "Gerson", "Ferrugem", "Ana"]
+points_list = [[3,2,5],[3,2,5],[3,2,5],[3,2,5],[3,2,5],[3,2,5],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10] ]
+
 
 def initial_print():
 	print "================================================================"
@@ -45,28 +47,94 @@ def pick_char(banlist):
 	print "\n" + character_list[id_pick - 1] + " PICKED"
 	return id_pick
 
+def start_game():
+	print "===SELECT CHARACTER TO PLAY==="
+	print ""
+	id_pick = input("")
+	return id_pick
+
+def action(charp1, charp2):
+	print "\n===CHOOSE OPTION==="
+	print "\n=== 0 - ATAQUE ==="
+	print "\n=== 1 - DEFESA ==="
+	print ""
+	id_action = input("")
+	points_list[character_list.index(charp1)][2] -= points_list[character_list.index(charp2)][id_action]
+	if points_list[character_list.index(charp1)][2] < 0:
+		return 0
+	else:
+		return 1
+
 if __name__ == "__main__":
 	
 	initial_print()
 	while (sys.stdin.read(1) != "\n"):
 		pass
 	banlist = []
-	player1 = player.Player(3)
-	player2 = player.Player(3)
+	player1 = player.Player(2)
+	player2 = player.Player(2)
 
 	banlist.append(ban())
 
 	for i in range(0, 2):
 		p1char = pick_char(banlist)
-		player1.add_char(p1char)
+		player1.add_char(character_list[p1char])
 		banlist.append(p1char)
 
 		p2char = pick_char(banlist)
-		player2.add_char(p2char)
+		player2.add_char(character_list[p2char])
 		banlist.append(p2char)
 
 	print ""
 	player1.printTeam()
 	player2.printTeam()
-	print "======="
+	print "======= START GAME ======= "
+	r1 = 1
+	r2 = 1
+
+	p1char = start_game()
+	player1.set_char(p1char)
+	p2char = start_game()
+	player2.set_char(p2char)
+
+	while True:
+		if r1 == 0:
+			print "\n===YOUR CHARACTER DIED P1===\n"
+			team = player1.remove_char()
+
+			if(team > 0):
+				player1.printTeam()
+				p1char = start_game()
+				player1.set_char(p1char)
+			else:
+				print "\n===GAME OVER==="
+				print "\n===P2 WINS==="				
+				break
+
+		if r2 == 0:
+			print "\n===YOUR CHARACTER DIED P2==="
+			team = player2.remove_char()
+
+			if(team > 0):
+				player2.printTeam()
+				p2char = start_game()
+				player2.set_char(p2char)
+			else:
+				print "\n===GAME OVER==="
+				print "\n===P1 WINS==="
+				break
+			
+		while True:
+			r1 = action(player1.get_char_name(), player2.get_char_name())
+			if(r1 == 0):
+				break
+			r2 = action(player2.get_char_name(), player1.get_char_name())
+			if r2 == 0:
+				break
+
+		
+			
+			
+
+
 	
