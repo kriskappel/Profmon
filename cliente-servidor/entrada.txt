@@ -1,0 +1,8 @@
+ Marilton,2,3,7,Aplicar prova de PC,ATAQUE MARILTON.
+Paulo,1,5,4,ATAQUE PAULO,ATAQUE PAULO.
+Torchelsen,2,4,6,Distribuir pontos,Perder pontos em CG.
+Leomar,3,1,8,Falar muito,ATAQUE LEOMAR.
+Guilherme,4,2,8,ATAQUE GUILHERME,ATAQUE GUILHERME.
+Ferrugem,2,1,8,Discutir Assunto,Vai Xavante.
+Renata,4,1,7,Palestra sobre logica fuzzy,ATAQUE RENATA.
+Tati,4,3,5,ATAQUE TATI,ATAQUE TATI.
