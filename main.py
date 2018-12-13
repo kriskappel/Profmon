@@ -5,9 +5,20 @@ import sys
 #
 #print (Mercedes.color)
 
-character_list = ["Marilton", "Paulo", "Torchelsen", "Pilla", "Leomar", "Luciana", "Simone", "Rafa", "Tati", "Guilherme", "Porto", "Lisane", "Felipe", "Substituto", "Cesar Menotti", "Du Bois", "Renata", "Gerson", "Ferrugem", "Ana"]
-points_list = [[3,2,5],[3,2,5],[3,2,5],[3,2,5],[3,2,5],[3,2,5],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10] ]
+#character_list = ["Marilton", "Paulo", "Torchelsen", "Pilla", "Leomar", "Luciana", "Simone", "Rafa", "Tati", "Guilherme", "Porto", "Lisane", "Felipe", "Substituto", "Cesar Menotti", "Du Bois", "Renata", "Gerson", "Ferrugem", "Ana"]
+#points_list = [[3,2,5],[3,2,5],[3,2,5],[3,2,5],[3,2,5],[3,2,5],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10],[3,2,10] ]
 
+character_list = []
+points_list = []
+atack = []
+file = open("entrada.txt","r")
+
+
+for item in file:
+	line = item.split(",")
+	character_list.append(line[0])
+	points_list.append([int(line[1]), int(line[2]), int(line[3])])
+	atack.append([line[4],line[5][:-1]])
 
 def initial_print():
 	print "================================================================"
@@ -55,8 +66,8 @@ def start_game():
 
 def action(charp1, charp2):
 	print "\n===CHOOSE OPTION==="
-	print "\n=== 0 - ATAQUE ==="
-	print "\n=== 1 - DEFESA ==="
+	print "\n=== 0 - " + atack[character_list.index(charp2)][0]
+	print "\n=== 1 - " + atack[character_list.index(charp2)][1]
 	print ""
 	id_action = input("")
 	points_list[character_list.index(charp1)][2] -= points_list[character_list.index(charp2)][id_action]
@@ -78,11 +89,11 @@ if __name__ == "__main__":
 
 	for i in range(0, 2):
 		p1char = pick_char(banlist)
-		player1.add_char(character_list[p1char])
+		player1.add_char(character_list[p1char-1])
 		banlist.append(p1char)
 
 		p2char = pick_char(banlist)
-		player2.add_char(character_list[p2char])
+		player2.add_char(character_list[p2char-1])
 		banlist.append(p2char)
 
 	print ""
