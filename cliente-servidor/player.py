@@ -5,10 +5,10 @@ class Player(object):
 		self.listChars.append(id_char)
 		self.charsLeft = self.charsLeft + 1
 
-	def printTeam(self, id_team):
+	def printTeam(self, id_team, chars = []):
 		print "TEAM, ", id_team, ":"
 		for i in range(0, len(self.listChars)):
-			print self.listChars[i]
+			print chars[self.listChars[i]]
 
 	def get_char(self, id):
 		return self.listChars[id]

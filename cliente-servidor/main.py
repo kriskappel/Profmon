@@ -24,7 +24,7 @@ def initial_print():
 
 def server_connect():
 
-	HOST = '192.168.0.34'   # Endereco IP do Servidor
+	HOST = '192.168.90.37'   # Endereco IP do Servidor
 	PORT = 5000  # Porta que o Servidor esta
 
 	player = 0
@@ -39,11 +39,6 @@ def server_connect():
 	tcp.send(mensagem_inicio_conexao)
 
 
-	# ts = str(time.time())
-	# tcp.send(ts)
-	# key = ts
-
-
 	while True:
 		data = recv_msg(tcp, 1024)
 
@@ -52,6 +47,11 @@ def server_connect():
 		if(data == 'CONNECTED. Waiting for Player 2'):
 			player = 1
 			print str(data)
+
+			#ts = str(time.time())
+			#tcp.send(ts)
+			#key = ts
+			##print key
 
 			while True:
 				data = recv_msg(tcp, 1024)
@@ -67,6 +67,10 @@ def server_connect():
 		elif(data == 'CONNECTED \nPLAYER 1 BANNING'):
 			player = 2
 			print str(data)
+
+			#key = recv_msg(tcp, 1024)
+			#print key
+
 			break
 
 	return (tcp, player)
@@ -315,8 +319,8 @@ if __name__ == "__main__":
 
 		banlist.append(pick)
 
-	#teams[0].printTeam(1)
-	#teams[1].printTeam(2)
+	teams[0].printTeam(1, character_list)
+	teams[1].printTeam(2, character_list)
 
 	
 	#BATTLE

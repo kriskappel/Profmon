@@ -35,11 +35,13 @@ def conectado(con, cliente, numClientes):
 
 	#Quando player 1 conecta
 	if(numClientes == 0):
-		# ts = con.recv(4096)
-		# with clients_lock:
-		# 	key = ts
-
+		
 		con.sendall('CONNECTED. Waiting for Player 2')
+
+		#ts = con.recv(4096)
+		#with clients_lock:
+		#	key = ts
+
 
 		while True:
 			msg = con.recv(1024)
@@ -58,6 +60,9 @@ def conectado(con, cliente, numClientes):
 		
 		enemy_player.sendall('PLAYER 2 CONNECTED')
 		con.sendall('CONNECTED \nPLAYER 1 BANNING')
+
+		#with clients_lock:
+		# 	print key
 
 	send_lists(con)
 
